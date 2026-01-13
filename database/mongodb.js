@@ -8,6 +8,9 @@ if(!DB_URI){
 // setup mongoose connection
 const connectToDatabase = async () => {
     try{
+        if(NODE_ENV === 'development') {
+            mongoose.set('debug', true);
+        }
         await mongoose.connect(DB_URI);
         console.log("Mongoose connected successfully", NODE_ENV);
     }catch(error){
